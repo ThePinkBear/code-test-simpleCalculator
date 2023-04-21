@@ -4,7 +4,7 @@ public class Calculator
 {
   private int _queuedCalculations;
 
-  public int PendingCalculations() => _queuedCalculations;
+  public int GetPendingCalculations() => _queuedCalculations;
   public Calculator AddCalculation(CalculationCommand calCom)
   {
     return calCom.operation switch

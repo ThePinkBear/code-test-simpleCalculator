@@ -33,7 +33,7 @@ public class CalculatorTests
       var calc = new Calculator();
 
       // act
-      var result = calc.PendingCalculations();
+      var result = calc.GetPendingCalculations();
 
       // assert
       result.Should().Be(0);
@@ -49,6 +49,50 @@ public class CalculatorTests
       var result = calc.AddCalculation(cmd);
 
       // assert
-      result.PendingCalculations().Should().Be(0);
+      result.GetPendingCalculations().Should().Be(0);
+    }
+    [Fact]
+    public void should_chain_add_commands()
+    {
+      // arrange
+      var calc = new Calculator();
+      var cmd1 = CalculationCommandFactory.CreateCalculationCommand(Operation.Add, 1);
+      var cmd2 = CalculationCommandFactory.CreateCalculationCommand(Operation.Add, 2);
+      var cmd3 = CalculationCommandFactory.CreateCalculationCommand(Operation.Add, 3);
+      var cmd4 = CalculationCommandFactory.CreateCalculationCommand(Operation.Add, 4);
+
+      // act
+      var result = calc
+        .AddCalculation(cmd1)
+        .AddCalculation(cmd2)
+        .AddCalculation(cmd3)
+        .AddCalculation(cmd4)
+        .GetPendingCalculations();
+
+      // assert
+      result.Should().Be(10);
+    }
+    [Fact]
+    public void should_chain_all_operation_types()
+    {
+      // arrange
+      var calc = new Calculator();
+      var cmd1 = CalculationCommandFactory.CreateCalculationCommand(Operation.Subtract, 4);
+      var cmd2 = CalculationCommandFactory.CreateCalculationCommand(Operation.Add, 5);
+      var cmd3 = CalculationCommandFactory.CreateCalculationCommand(Operation.Subtract, 10);
+      var cmd4 = CalculationCommandFactory.CreateCalculationCommand(Operation.Add, 15);
+      var cmd5 = CalculationCommandFactory.CreateCalculationCommand(Operation.Multiply, 2);
+
+      // act
+      var result = calc
+        .AddCalculation(cmd1)
+        .AddCalculation(cmd2)
+        .AddCalculation(cmd3)
+        .AddCalculation(cmd4)
+        .AddCalculation(cmd5)
+        .GetPendingCalculations();
+
+      // assert
+      result.Should().Be(12);
     }
 }
