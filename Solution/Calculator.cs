@@ -2,13 +2,12 @@ namespace SectraCalculator;
 
 public class Calculator
 {
-  // private double _queuedCalculations;
   private Dictionary<string, double> _queuedCalculations = new();
 
   public double GetPendingCalculations(string key) => _queuedCalculations[key];
   public Calculator AddCalculation(CalculationCommand calCom)
   {
-    if (!_queuedCalculations.ContainsKey(calCom.transaction.Register))
+    if (!_queuedCalculations.ContainsKey(calCom.transaction!.Register))
     {
       _queuedCalculations.Add(calCom.transaction.Register, 0.0);
     }
