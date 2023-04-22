@@ -4,7 +4,7 @@ namespace SectraCalculator;
 
 public static class Printer
 {
-  public static void Print(List<Transaction> transactions, string register)
+  public static double Print(List<Transaction> transactions, string register)
   {
     var selected = transactions
       .Where(t => t.Register == register)
@@ -14,7 +14,6 @@ public static class Printer
     foreach(var calcCommand in selected){
       calc.AddCalculation(calcCommand);
     }
-    var result = calc.GetPendingCalculations(register);
-    Messages.CurrentValue(register, result);
+    return calc.GetPendingCalculations(register);
   }
 }

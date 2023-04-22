@@ -12,9 +12,24 @@ public class TransactionReader
         string? line;
         while((line = reader.ReadLine()) != null)
         {
-          if (line.ToLower() == "Quit") break;
+          if (line.ToLower() == "quit") break;
 
           var input = line.Split(" ");
+          if (input[0].ToLower() == "print")
+          {
+            Messages.CurrentValue(input[1], Printer.Print(transactions, input[1]));
+            continue;
+          }
+          double retrievedValue;
+          var valueInput = input[2];
+          if (double.TryParse(valueInput, out double value))
+          {
+            retrievedValue = value;
+          }
+          else
+          {
+            retrievedValue = Printer.Print(transactions, valueInput);
+          }
 
           if (input[0].ToLower() == "print")
           {
@@ -34,7 +49,7 @@ public class TransactionReader
               _
                => throw new ArgumentException("File not correctly formatted")
             },
-            Value = Convert.ToDouble(input[2])
+            Value = retrievedValue
           });  
         }
         return transactions;
