@@ -2,16 +2,14 @@ namespace SectraCalculator;
 
 public class CalculationCommand
 {
-  public Operation operation { get; private set; }
-  public int value { get; private set; }
-  public string register { get; private set; }
+  public Transaction? transaction { get; private set; }
 
   private CalculationCommand(){}
   public static class CalculationCommandFactory
   {
-    public static CalculationCommand CreateCalculationCommand(string reg, Operation op, int val)
+    public static CalculationCommand CreateCalculationCommand(Transaction tra)
     {
-      return new(){register = reg, operation = op, value = val};
+      return new(){ transaction = tra };
     }
   }
 }
