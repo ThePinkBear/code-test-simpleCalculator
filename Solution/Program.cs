@@ -1,10 +1,20 @@
 ﻿using SectraCalculator;
-using static SectraCalculator.CalculationCommand;
 
 internal class Program
 {
-  private static void Main(string[] args)
-  {
-    List<Transaction> transactions = new();
-  }
+  public static void Main(string[] args)
+    {
+        var calculator = new TransactionFileExtractor();
+        if (args.Length == 1)
+        {
+            using (var file = new StreamReader(args[0]))
+            {
+                calculator.Run(file);
+            }
+        }
+        else
+        {
+            calculator.Run(Console.In);
+        }
+    }
 }
