@@ -63,7 +63,7 @@ public class UserInput
         {
           Register = register,
           Operation = operation,
-          Value = Printer.Print(transactions, valueInput)
+          Value = Printer.Print(transactions, valueInput!)
         });
         continue;
       }
