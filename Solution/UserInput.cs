@@ -2,47 +2,60 @@ namespace SectraCalculator;
 
 public class UserInput
 {
-  public Transaction UserInputLogic()
+  public void UserInputLogic()
   {
     List<Transaction> transactions = new();
-
-    Console.WriteLine("Input register");
-    string register = Console.ReadLine()!;
-
-    Console.WriteLine("input operationtype; Add, Subtract or Multiply");
-  
-    Operation operation;
-    while(true)
-    { 
-      var input = Console.ReadLine()?.ToLower();
-      switch(input)
+        
+      while (true)
       {
-        case "add":
-          operation = Operation.Add;
-          break;
-        case "subtract":
-          operation = Operation.Subtract;
-          break;
-        case "multiply":
-          operation = Operation.Multiply;
-          break;
-        default:
-          Console.WriteLine("Unsupported operation type.");
-          Console.WriteLine("Please input either: Add, Subtract or Multiply.");
+        Messages.Prompt();
+
+        var cmd = Console.ReadLine()!.Split(" ");
+        if (cmd[0].ToLower() == "quit")
+        {
+          Environment.Exit(0);
+        }
+        if (cmd[0].ToLower() == "print")
+        {
+          Printer.Print(transactions, cmd[1]);
           continue;
-      };
-      break;
+        }
+        
+        Messages.InputRegister();
+        string register = Console.ReadLine()!;
+
+        Messages.InputOperator();
+        var input = Console.ReadLine()?.ToLower();
+
+        Operation operation;
+
+        switch (input)
+        {
+          case "add":
+            operation = Operation.Add;
+            break;
+          case "subtract":
+            operation = Operation.Subtract;
+            break;
+          case "multiply":
+            operation = Operation.Multiply;
+            break;
+          default:
+            Messages.OperatorErrorMessage();
+            continue;
+        };
+
+        Messages.InputNumeric();
+        int value = int.Parse(Console.ReadLine()!);
+        
+        transactions.Add( new()
+        {
+          Register = register,
+          Operation = operation,
+          Value = value
+        });
+        continue;
+      }
     }
-    Console.WriteLine("Input numeric value");
-    int value = int.Parse(Console.ReadLine()!);
-
-    return new()
-    {
-      Register = register,
-      Operation = operation,
-      Value = value
-    };
-
-  }
 }
 

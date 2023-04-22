@@ -2,21 +2,32 @@ namespace SectraCalculator;
 
 public class Calculator
 {
-  private double _queuedCalculations;
+  // private double _queuedCalculations;
+  private Dictionary<string, double> _queuedCalculations = new();
 
-  public double GetPendingCalculations() => _queuedCalculations;
+  public double GetPendingCalculations(string key) => _queuedCalculations[key];
   public Calculator AddCalculation(CalculationCommand calCom)
   {
-    return calCom.transaction!.Operation switch
+    if (!_queuedCalculations.ContainsKey(calCom.transaction.Register))
     {
-      Operation.Add
-      => new(){_queuedCalculations = _queuedCalculations + calCom.transaction.Value},
-      Operation.Subtract
-      => new(){_queuedCalculations = _queuedCalculations - calCom.transaction.Value},
-      Operation.Multiply
-      => new(){_queuedCalculations = _queuedCalculations * calCom.transaction.Value},
-      _
-      => throw new ArgumentException("Unsupported operation")
-    };
+      _queuedCalculations.Add(calCom.transaction.Register, 0.0);
+    }
+
+    switch (calCom.transaction.Operation)
+    {
+      case Operation.Add:
+        _queuedCalculations[calCom.transaction.Register] += calCom.transaction.Value;
+        break;
+      case Operation.Subtract:
+        _queuedCalculations[calCom.transaction.Register] -= calCom.transaction.Value;
+        break;
+      case Operation.Multiply:
+        _queuedCalculations[calCom.transaction.Register] *= calCom.transaction.Value;
+        break;
+      default:
+        throw new ArgumentException("Unsupported operation");
+    }
+
+    return this;
   }
 }

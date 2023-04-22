@@ -2,25 +2,28 @@ namespace SectraCalculator;
 
 public class TransactionReader
 {
-  public List<Transaction> Extract(string path)
+  public List<Transaction> Extract(StreamReader reader)
     {
       
       List<Transaction> transactions = new();
       
-      using (StreamReader reader = new StreamReader(path))
+      using (reader)
       {
         string? line;
         while((line = reader.ReadLine()) != null)
         {
           if (line.ToLower() == "Quit") break;
 
-          var transaction = line.Split(" ");
+          var input = line.Split(" ");
 
-          if (transaction[0].ToLower() == "print") continue; //TODO Implement Printing functionality.
+          if (input[0].ToLower() == "print")
+          {
+            Printer.Print(transactions, input[1]);
+          }
           transactions.Add(new Transaction()
           { 
-            Register = transaction[0], 
-            Operation = transaction[1] switch
+            Register = input[0], 
+            Operation = input[1] switch
             {
               "add"
                 => Operation.Add,
@@ -31,7 +34,7 @@ public class TransactionReader
               _
                => throw new ArgumentException("File not correctly formatted")
             },
-            Value = Convert.ToDouble(transaction[2])
+            Value = Convert.ToDouble(input[2])
           });  
         }
         return transactions;
