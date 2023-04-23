@@ -13,11 +13,17 @@ public static class Messages
   }
   public static void Prompt()
   {
-    Console.Write("Press ");
+    Console.WriteLine();
+    Console.Write("Enter your chosen register name followed by operation and value like this: ");
+    Console.ForegroundColor = ConsoleColor.Cyan;
+    Console.Write("A Add 5 ");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Write("then hit ");
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.Write("Enter");
     Console.ForegroundColor = ConsoleColor.White;
-    Console.WriteLine(" to add another transaction");
+    Console.WriteLine(" to add a new transaction.");
+    Console.ForegroundColor = ConsoleColor.White;
     Console.Write("Type ");
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.Write("Print");
@@ -32,6 +38,7 @@ public static class Messages
     Console.ForegroundColor = ConsoleColor.White;
     Console.Write(" to exit.");
     Console.ResetColor();
+    Console.WriteLine();
     Console.WriteLine();
   }
   public static void InputNumeric()
@@ -77,5 +84,12 @@ public static class Messages
     Console.ResetColor();
     Thread.Sleep(1000);
     Console.WriteLine();
+  }
+  public static void PressSomething()
+  {
+    Console.Write("You need to add something other than just hitting ");
+    Console.ForegroundColor = ConsoleColor.DarkYellow;
+    Console.Write("Enter");
+    Console.ForegroundColor = ConsoleColor.White;
   }
 }

@@ -5,19 +5,18 @@ internal class Program
   public static void Main(string[] args)
   {
     Messages.AppStart();
-
-    var calculator = new TransactionReader();
-    var user = new UserInput();
+    FileInput fileReader = new();
+    UserInput userReader = new();
     if (args.Length == 1)
     {
       using (var file = new StreamReader(args[0]))
       {
-          calculator.Extract(file);
+        fileReader.FileInputLogic(file);
       }
     }
     else
     {
-        user.UserInputLogic();
+      userReader.UserInputLogic();
     }
   }
 }
