@@ -10,10 +10,10 @@ internal class Program
     var user = new UserInput();
     if (args.Length == 1)
     {
-        using (var file = new StreamReader(args[0]))
-        {
-            calculator.Extract(file);
-        }
+      using (var file = new StreamReader(args[0]))
+      {
+          calculator.Extract(file);
+      }
     }
     else
     {
