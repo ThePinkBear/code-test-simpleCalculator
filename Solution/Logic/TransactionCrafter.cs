@@ -7,16 +7,6 @@ public class TransactionCrafter
     Transaction result = new();
     while(true)
     {
-      if (input[0] == "quit")
-      {
-        Environment.Exit(0);
-      }
-      if (input[0] == "print")
-      {
-        Messages.CurrentValue(input[1], Printer.Print(transactions, input[1]));
-        return result;
-      }
-
       string register = input[0];
 
       var operatorInput = input[1];
@@ -35,8 +25,8 @@ public class TransactionCrafter
           operation = Operation.Multiply;
           break;
         default:
-          Messages.OperatorErrorMessage();
-          continue;
+          Messages.OperatorErrorMessage(errorMessage);
+          return result;
       };
 
       var valueInput = input[2];
@@ -54,7 +44,7 @@ public class TransactionCrafter
       {
         result = new()
         {
-          Register = register,
+          Register = valueInput,
           Operation = operation,
           Value = Printer.Print(transactions, valueInput!)
         };
