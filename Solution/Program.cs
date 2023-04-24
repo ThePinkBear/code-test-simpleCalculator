@@ -1,4 +1,4 @@
-﻿using SectraCalculator;
+﻿using TransactionCalculator;
 
 internal class Program
 {

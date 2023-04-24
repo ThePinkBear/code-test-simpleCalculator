@@ -1,5 +1,5 @@
 
-namespace SectraCalculator;
+namespace TransactionCalculator;
 
 public static class Printer
 {

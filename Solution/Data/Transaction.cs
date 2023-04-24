@@ -1,4 +1,4 @@
-namespace SectraCalculator;
+namespace TransactionCalculator;
 public class Transaction
 {
     public string Register { get; set; } = "";
