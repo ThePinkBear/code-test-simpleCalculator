@@ -5,23 +5,23 @@ public class Calculator
   private Dictionary<string, double> _queuedCalculations = new();
 
   public double GetPendingCalculations(string key) => _queuedCalculations[key];
-  public Calculator AddCalculation(CalculationCommand calCom)
+  public Calculator AddCalculation(Transaction transaction)
   {
-    if (!_queuedCalculations.ContainsKey(calCom.transaction!.Register))
+    if (!_queuedCalculations.ContainsKey(transaction!.Register))
     {
-      _queuedCalculations.Add(calCom.transaction.Register, 0.0);
+      _queuedCalculations.Add(transaction.Register, 0.0);
     }
 
-    switch (calCom.transaction.Operation)
+    switch (transaction.Operation)
     {
       case Operation.Add:
-        _queuedCalculations[calCom.transaction.Register] += calCom.transaction.Value;
+        _queuedCalculations[transaction.Register] += transaction.Value;
         break;
       case Operation.Subtract:
-        _queuedCalculations[calCom.transaction.Register] -= calCom.transaction.Value;
+        _queuedCalculations[transaction.Register] -= transaction.Value;
         break;
       case Operation.Multiply:
-        _queuedCalculations[calCom.transaction.Register] *= calCom.transaction.Value;
+        _queuedCalculations[transaction.Register] *= transaction.Value;
         break;
       default:
         throw new ArgumentException("Unsupported operation");
