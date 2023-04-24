@@ -3,9 +3,8 @@ namespace SectraCalculator;
 
 public static class Printer
 {
-  public static double Print(List<Transaction> transactions, string register)
+  public static double Print(List<Transaction> transactions, string register, Calculator calc)
   {
-    Calculator calc = new();
     foreach(var transaction in transactions){
       calc.AddCalculation(transaction);
     }

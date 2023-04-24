@@ -2,15 +2,17 @@ namespace SectraCalculator;
 
 public class TransactionCrafter
 {
-  public Transaction GetTransaction(string[] input, string errorMessage, List<Transaction> transactions)
+  public Transaction GetTransaction(string[] input, string errorMessage, List<Transaction> transactions, Calculator calc)
   {
     Transaction result = new();
     while(true)
     {
-      string register = input[0];
+      string registerInput = input[0];
 
       var operatorInput = input[1];
 
+      var valueInput = input[2];
+      
       Operation operation;
 
       switch (operatorInput)
@@ -26,18 +28,18 @@ public class TransactionCrafter
           break;
         default:
           Messages.OperatorErrorMessage(errorMessage);
-          return result;
+          continue;
       };
 
-      var valueInput = input[2];
       if (double.TryParse(valueInput, out double value))
       {
         result = new()
         {
-          Register = register,
+          Register = registerInput,
           Operation = operation,
           Value = value
         };
+        calc.AddRegister(registerInput, value);
         return result;
       }
       else
@@ -46,11 +48,10 @@ public class TransactionCrafter
         {
           Register = valueInput,
           Operation = operation,
-          Value = Printer.Print(transactions, valueInput!)
+          Value = calc.GetPendingCalculations(registerInput)
         };
         return result;
       }
     }
   }
-  
 }

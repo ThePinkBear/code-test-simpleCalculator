@@ -17,7 +17,7 @@ internal class Program
     }
     else
     {
-      userReader.UserInputLogic();
+      userReader.UserInputLogic(calc);
     }
   }
 }

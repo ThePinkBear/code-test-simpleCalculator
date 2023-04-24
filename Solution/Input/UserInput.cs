@@ -3,7 +3,7 @@ namespace SectraCalculator;
 public class UserInput
 {
 
-  public void UserInputLogic()
+  public void UserInputLogic(Calculator calc)
   {
     Messages.Prompt();
     List<Transaction> transactions = new();
@@ -27,12 +27,12 @@ public class UserInput
       }
       if (cmd[0] == "print")
       {
-        Messages.CurrentValue(cmd[1], Printer.Print(transactions, cmd[1]));
+        Messages.CurrentValue(cmd[1], Printer.Print(transactions, cmd[1], calc));
         Messages.ContinousPrompt();
         continue;
       }
       Messages.ContinousPrompt();
-      transactions.Add(tr.GetTransaction(cmd, message, transactions));
+      transactions.Add(tr.GetTransaction(cmd, message, transactions, calc));
       continue;
     }
   }
