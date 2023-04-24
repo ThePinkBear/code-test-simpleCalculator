@@ -3,7 +3,7 @@ namespace SectraCalculator;
 public class Calculator
 {
   private Dictionary<string, double> _queuedCalculations = new();
-
+  public List<Transaction> transactions = new();
   public void AddRegister(string reg, double val)
   {
     if(!_queuedCalculations.ContainsKey(reg))
