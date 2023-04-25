@@ -11,13 +11,14 @@ public class UserInput
     var message = "Available operations are: Add, Subtract & Multiply \nRetry please.";
     while ((cmd = Console.ReadLine()?.ToLower().Split(" ")) != null)
     {
-      if(cmd[0] == "")
+      if (cmd[0] == "")
       {
         Messages.PressSomething();
         Thread.Sleep(1000);
         Messages.ContinousPrompt();
         continue;
       }
+
       if (cmd[0] == "quit")
       {
         Messages.AppEnd();
@@ -26,7 +27,17 @@ public class UserInput
       }
       if (cmd[0] == "print")
       {
-        Messages.CurrentValue(cmd[1], Printer.Print(calc.transactions, cmd[1], calc));
+        foreach (var transaction in calc.transactions)
+        {
+          calc.DoCalculation(transaction);
+        }
+        Messages.CurrentValue(cmd[1], Printer.GetValue(cmd[1], calc));
+        Messages.ContinousPrompt();
+        continue;
+      }
+      if (cmd.Length > 3)
+      {
+        Console.WriteLine("Invalid input");
         Messages.ContinousPrompt();
         continue;
       }

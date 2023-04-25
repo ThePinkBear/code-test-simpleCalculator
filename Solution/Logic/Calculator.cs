@@ -4,7 +4,7 @@ public class Calculator
 {
   private Dictionary<string, double> _queuedCalculations = new();
   public List<Transaction> transactions = new();
-  public void AddRegister(string reg, double val)
+  public void AddRegister(string reg)
   {
     if(!_queuedCalculations.ContainsKey(reg))
     {
@@ -12,8 +12,9 @@ public class Calculator
     }
   }
 
-  public double GetPendingCalculations(string key) => _queuedCalculations.ContainsKey(key)? _queuedCalculations[key]: 0.0;
-  public void AddCalculation(Transaction transaction)
+  public double GetRegisterValue(string key) => _queuedCalculations.ContainsKey(key)? _queuedCalculations[key]: 0.0;
+  
+  public void DoCalculation(Transaction transaction)
   {
     switch (transaction.Operation)
     {

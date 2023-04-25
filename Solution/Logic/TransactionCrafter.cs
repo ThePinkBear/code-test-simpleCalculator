@@ -33,22 +33,25 @@ public class TransactionCrafter
 
       if (double.TryParse(valueInput, out double value))
       {
+        calc.AddRegister(registerInput);
         result = new()
         {
           Register = registerInput,
           Operation = operation,
           Value = value
         };
-        calc.AddRegister(registerInput, value);
         return result;
       }
       else
       {
+        calc.AddRegister(registerInput);
+        calc.AddRegister(valueInput);
+
         result = new()
         {
           Register = valueInput,
           Operation = operation,
-          Value = calc.GetPendingCalculations(registerInput)
+          Value = calc.GetRegisterValue(registerInput)
         };
         return result;
       }
