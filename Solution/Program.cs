@@ -7,17 +7,16 @@ internal class Program
     Messages.AppStart();
     FileInput fileReader = new();
     UserInput userReader = new();
-    Calculator calc = new();
     if (args.Length == 1)
     {
       using (var file = new StreamReader(args[0]))
       {
-        fileReader.FileInputLogic(file, calc);
+        fileReader.FileInputLogic(file);
       }
     }
     else
     {
-      userReader.UserInputLogic(calc);
+      userReader.UserInputLogic();
     }
   }
 }

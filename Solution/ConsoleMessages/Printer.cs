@@ -3,8 +3,8 @@ namespace TransactionCalculator;
 
 public static class Printer
 {
-  public static double GetValue(string register, Calculator calc)
+  public static double GetValue(string register, Dictionary<string, double> registerValue)
   {
-    return calc.GetRegisterValue(register);
+    return registerValue[register];
   }
 }

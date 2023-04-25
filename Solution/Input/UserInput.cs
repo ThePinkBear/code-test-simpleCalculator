@@ -3,8 +3,10 @@ namespace TransactionCalculator;
 public class UserInput
 {
 
-  public void UserInputLogic(Calculator calc)
+  public void UserInputLogic()
   {
+    Dictionary<string, double> registerValue = new();
+    List<Transaction> transactions = new();
     Messages.Prompt();
     TransactionCrafter tr = new();
     string[]? cmd;
@@ -27,11 +29,10 @@ public class UserInput
       }
       if (cmd[0] == "print")
       {
-        foreach (var transaction in calc.transactions)
-        {
-          calc.DoCalculation(transaction);
-        }
-        Messages.CurrentValue(cmd[1], Printer.GetValue(cmd[1], calc));
+        Calculator calc = new(registerValue, transactions);
+        calc.Caluclate();
+        var result = calc.GetValue(cmd[1]);
+        Messages.CurrentValue(cmd[1], result);
         Messages.ContinousPrompt();
         continue;
       }
@@ -42,7 +43,7 @@ public class UserInput
         continue;
       }
       Messages.ContinousPrompt();
-      calc.transactions.Add(tr.GetTransaction(cmd, message, calc.transactions, calc));
+      tr.GetTransaction(cmd, message, transactions, registerValue);
       continue;
     }
   }
