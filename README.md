@@ -1,6 +1,19 @@
 # SECTRA – PROGRAMMING
 
-ASSIGNMENT – SIMPLE CALCULATOR
+-------------------------------------------------------------------
+To run on windows, make sure you have .Net sdk 7.0.200 installed.
+- clone the repo
+- cd into the folder
+- run these commands: "dotnet restore" and "dotnet build"
+- To launch the program: "dotnet run"
+- To test against a file: "dotnet run <path to file>"
+-------------------------------------------------------------------
+
+***Disclaimer***
+I did not manage to solve all the things I needed to in order to satisfy all the requirements, thus I didn't have time to do all the refactors I wanted to either, I'm currently working fulltime as an instructor and had to manage my time to the best of my abilities but I will continue on this test for my own amusement when time permits as I found it a good brain tickler.
+
+
+## ASSIGNMENT – SIMPLE CALCULATOR
 
 Your task is to write a simple calculator that can add, subtract and multiply values in a set of registers.
 The syntax is quite simple
