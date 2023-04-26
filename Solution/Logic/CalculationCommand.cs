@@ -1,9 +1,7 @@
-namespace SectraCalculator;
-
+namespace TransactionCalculator;
 public class CalculationCommand
 {
   public Transaction? transaction { get; private set; }
-
   private CalculationCommand(){}
   public static class CalculationCommandFactory
   {

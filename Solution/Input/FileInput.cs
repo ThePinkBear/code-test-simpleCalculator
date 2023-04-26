@@ -1,4 +1,4 @@
-namespace SectraCalculator;
+namespace TransactionCalculator;
 
 public class FileInput
 {
@@ -13,7 +13,7 @@ public class FileInput
     {
       while ((line = reader.ReadLine()?.ToLower().Split(" ")) != null)
       {
-        transactions.Add(tr.GetTransaction(line, message, transactions));
+        tr.GetTransaction(line, message, transactions);
       }
     }
   }

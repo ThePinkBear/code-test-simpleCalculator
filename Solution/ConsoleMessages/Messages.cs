@@ -1,4 +1,4 @@
-namespace SectraCalculator;
+namespace TransactionCalculator;
 
 public static class Messages
 {
@@ -7,14 +7,45 @@ public static class Messages
     Console.WriteLine();
     Console.Clear();
     Console.ForegroundColor = ConsoleColor.Blue;
-    Console.WriteLine("||**|| Welcome to the transaction calculator ||**||");
-    Console.ResetColor();
+    Console.WriteLine("||**|| Welcome to the Transaction Calculator ||**||");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine();
+    Console.Write("Enter your a file path if you wish to read your transactions from a file: \n");
+  }
+  public static void AppEnd()
+  {
+    Console.WriteLine();
+    Console.Clear();
+    Console.ForegroundColor = ConsoleColor.Blue;
+    Console.WriteLine("||**|| Thank you for trying the Transaction Calculator ||**||");
+    Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine();
   }
   public static void Prompt()
   {
     Console.WriteLine();
-    Console.Write("Enter your chosen register name followed by operation and value like this: ");
+    Console.Write("Enter your chosen register name followed by operation and value like this: \n");
+    Console.ForegroundColor = ConsoleColor.Cyan;
+    Console.Write("A Add 5\n");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Write("then hit '");
+    Console.ForegroundColor = ConsoleColor.DarkYellow;
+    Console.Write("Enter");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine("' to add a new transaction.");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Write("Type ");
+    Console.ForegroundColor = ConsoleColor.DarkYellow;
+    Console.Write("'Quit'");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Write(" to exit.");
+    Console.WriteLine();
+    Console.WriteLine();
+  }
+  public static void ContinousPrompt()
+  {
+    Console.WriteLine();
+    Console.Write("Keep adding transactions ex: ");
     Console.ForegroundColor = ConsoleColor.Cyan;
     Console.Write("A Add 5 ");
     Console.ForegroundColor = ConsoleColor.White;
@@ -22,13 +53,13 @@ public static class Messages
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.Write("Enter");
     Console.ForegroundColor = ConsoleColor.White;
-    Console.WriteLine(" to add a new transaction.");
+    Console.WriteLine(". \nOr:");
     Console.ForegroundColor = ConsoleColor.White;
-    Console.Write("Type ");
+    Console.Write("Type '");
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.Write("Print");
     Console.ForegroundColor = ConsoleColor.White;
-    Console.Write(" followed by the Register you wish to print, ex:");
+    Console.Write("' followed by the Register you wish to print, ex:");
     Console.ForegroundColor = ConsoleColor.Cyan;
     Console.WriteLine(" 'Print A'");
     Console.ForegroundColor = ConsoleColor.White;
@@ -37,7 +68,6 @@ public static class Messages
     Console.Write("'Quit'");
     Console.ForegroundColor = ConsoleColor.White;
     Console.Write(" to exit.");
-    Console.ResetColor();
     Console.WriteLine();
     Console.WriteLine();
   }
@@ -45,30 +75,29 @@ public static class Messages
   {
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.WriteLine("Input numeric value");
-    Console.ResetColor();
+    Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine();
   }
   public static void InputOperator()
   {
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.WriteLine("input operationtype; Add, Subtract or Multiply");
-    Console.ResetColor();
+    Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine();
   }
   public static void InputRegister()
   {
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.WriteLine("Input register");
-    Console.ResetColor();
+    Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine();
   }
-  public static void OperatorErrorMessage()
+  public static void OperatorErrorMessage(string errorMessage)
   {
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine("Unsupported operation type.");
-    Console.WriteLine("Restarting transaction input.");
-    Thread.Sleep(500);
-    Console.ResetColor();
+    Console.WriteLine(errorMessage);
+    Console.ForegroundColor = ConsoleColor.White;
+    Thread.Sleep(1000);
     Console.WriteLine();
   }
   public static void CurrentValue(string register, double result)
@@ -77,11 +106,11 @@ public static class Messages
     Console.Write("Current value of ");
     Console.ForegroundColor = ConsoleColor.Green;
     Console.Write($"{register}");
-    Console.ResetColor();
+    Console.ForegroundColor = ConsoleColor.White;
     Console.Write(" is: ");
     Console.ForegroundColor = ConsoleColor.Green;
     Console.Write($"{result}");
-    Console.ResetColor();
+    Console.ForegroundColor = ConsoleColor.White;
     Thread.Sleep(1000);
     Console.WriteLine();
   }
@@ -91,5 +120,7 @@ public static class Messages
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.Write("Enter");
     Console.ForegroundColor = ConsoleColor.White;
+    Thread.Sleep(1000);
+    Console.WriteLine();
   }
 }
