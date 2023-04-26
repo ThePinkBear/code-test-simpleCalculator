@@ -7,7 +7,6 @@ public static class Printer
   public static double Print(List<Transaction> transactions, string register)
   {
     var selected = transactions
-      .Where(t => t.Register == register)
       .Select(t => CalculationCommandFactory.CreateCalculationCommand(t));
       
     Calculator calc = new();
