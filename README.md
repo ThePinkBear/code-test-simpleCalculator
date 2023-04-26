@@ -6,7 +6,7 @@ To run on windows, make sure you have .Net sdk 7.0.200 installed.
 - cd into the folder
 - run these commands: "dotnet restore" and "dotnet build"
 - To launch the program: "dotnet run"
-- To test against a file: "dotnet run <path to file>"
+- To test against a file: "dotnet run \<path to file\>"
 -------------------------------------------------------------------
 
 ***Disclaimer***
