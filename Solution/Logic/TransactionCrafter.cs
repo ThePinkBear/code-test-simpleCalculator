@@ -2,11 +2,10 @@ namespace TransactionCalculator;
 
 public class TransactionCrafter
 {
-  public void CreateTransaction(string[] input, string errorMessage, List<Transaction> transactions, List<Transaction> relationTransactions)
+  public void CreateTransaction(string[] input, List<Transaction> transactions, List<Transaction> relationTransactions)
   {
     Transaction result = new();
-    while(true)
-    {
+    
       string registerInput = input[0];
 
       Operation operatorInput = input[1] switch
@@ -17,13 +16,12 @@ public class TransactionCrafter
           => Operation.Subtract,
         "multiply" 
           => Operation.Multiply,
-        _ 
-          => throw new ArgumentException(errorMessage)
+          _
+          => throw new ArgumentException("Invalid input")
       };
 
       var valueInput = input[2];
       
-
       if (double.TryParse(valueInput, out double value))
       {
         result = new()
@@ -33,7 +31,6 @@ public class TransactionCrafter
           Value = new KeyValuePair<string, double>("", value)
         };
         transactions.Add(result);
-        break;
       }
       else
       {
@@ -45,8 +42,7 @@ public class TransactionCrafter
         };
         
         relationTransactions.Add(result);
-        break;
       }
-    }
+    
   }
 }

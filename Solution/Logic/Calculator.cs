@@ -17,7 +17,7 @@ public class Calculator
       _registerValue[calCom.transaction.Value.Key] :
       calCom.transaction.Value.Value;
     
-    Console.WriteLine($"Register: {calCom.transaction.Register} Operation: {calCom.transaction.Operation} ValueKey: {calCom.transaction.Value.Key} ValueValue: {value}");
+    // Console.WriteLine($"Register: {calCom.transaction.Register} Operation: {calCom.transaction.Operation} ValueKey: {calCom.transaction.Value.Key} ValueValue: {value}");
     
     switch (calCom.transaction?.Operation)
     {

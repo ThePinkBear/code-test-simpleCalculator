@@ -10,11 +10,10 @@ public class UserInput
     List<Transaction> relationTransactions = new();
 
     TransactionCrafter tr = new();
-    string[]? cmd;
-    var message = "Available operations are: Add, Subtract & Multiply \nRetry please.";
-    while ((cmd = Console.ReadLine()?.ToLower().Split(" ")) != null)
+    string[]? input;
+    while ((input = Console.ReadLine()?.ToLower().Split(" ")) != null)
     {
-      if (cmd[0] == "")
+      if (input[0] == "")
       {
         Messages.PressSomething();
         Thread.Sleep(1000);
@@ -22,36 +21,36 @@ public class UserInput
         continue;
       }
 
-      if (cmd[0] == "quit")
+      if (input[0] == "quit")
       {
         Messages.AppEnd();
         Thread.Sleep(1000);
         Environment.Exit(0);
       }
-      if (cmd[0] == "print")
+      if (input[0] == "print")
       {
         foreach(var relationTransaction in relationTransactions)
         {
           transactions.Add(relationTransaction);
         }
-        if(cmd.Length < 2)
+        if(input.Length < 2)
         {
           Console.WriteLine("Invalid input");
           Messages.ContinousPrompt();
           continue;
         }
-        Messages.CurrentValue(cmd[1], Printer.GetValue(transactions, cmd[1]));
+        Messages.CurrentValue(input[1], Printer.GetValue(transactions, input[1]));
         Messages.ContinousPrompt();
         continue;
       }
-      if (cmd.Length > 3)
+      if (input.Length > 3)
       {
         Console.WriteLine("Invalid input");
         Messages.ContinousPrompt();
         continue;
       }
+      tr.CreateTransaction(input, transactions, relationTransactions);
       Messages.ContinousPrompt();
-      tr.CreateTransaction(cmd, message, transactions, relationTransactions);
       continue;
     }
   }

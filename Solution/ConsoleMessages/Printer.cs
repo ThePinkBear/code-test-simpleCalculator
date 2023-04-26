@@ -4,12 +4,16 @@ public static class Printer
 {
   public static double GetValue(List<Transaction> transactions, string register)
   {
-    var calc = new Calculator();
+    Calculator calculator = new();
+    
     foreach (var transaction in transactions)
     {
-      var calCom = CalculationCommand.CalculationCommandFactory.CreateCalculationCommand(transaction);
-      calc.DoCalculation(calCom);
+      var calculationCommand = CalculationCommand
+        .CalculationCommandFactory
+        .CreateCalculationCommand(transaction);
+
+      calculator.DoCalculation(calculationCommand);
     }
-    return calc.GetValue(register);
+    return calculator.GetValue(register);
   }
 }

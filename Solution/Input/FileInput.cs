@@ -8,7 +8,6 @@ public class FileInput
     List<Transaction> relationTransactions = new();
     TransactionCrafter tr = new();
     string[]? line;
-    var message = "File transaction not correctly formatted";
 
     using (reader)
     {
@@ -50,7 +49,7 @@ public class FileInput
         Messages.ContinousPrompt();
         continue;
       }
-        tr.CreateTransaction(line, message, transactions, relationTransactions);
+        tr.CreateTransaction(line, transactions, relationTransactions);
       }
     }
   }
