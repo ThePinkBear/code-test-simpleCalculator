@@ -17,17 +17,26 @@ public class Calculator
     {
       _registerValue.Add(calCom.transaction.Register, 0);
     }
+    double value = 0;
+    if(calCom.transaction.Value.Key != "")
+    {
+      value = _registerValue[calCom.transaction.Value.Key];
+    }
+    else
+    {
+      value = calCom.transaction.Value.Value;
+    }
     
     switch (calCom.transaction?.Operation)
     {
       case Operation.Add:
-        _registerValue[calCom.transaction.Register] = _registerValue[calCom.transaction.Register] + calCom.transaction.Value;
+        _registerValue[calCom.transaction.Register] = _registerValue[calCom.transaction.Register] + value;
         break;
       case Operation.Subtract:
-        _registerValue[calCom.transaction.Register] = _registerValue[calCom.transaction.Register] - calCom.transaction.Value;
+        _registerValue[calCom.transaction.Register] = _registerValue[calCom.transaction.Register] - value;
         break;
       case Operation.Multiply:
-        _registerValue[calCom.transaction.Register] = _registerValue[calCom.transaction.Register] * calCom.transaction.Value;
+        _registerValue[calCom.transaction.Register] = _registerValue[calCom.transaction.Register] * value;
         break;
       default:
         throw new ArgumentException("Unsupported operation");

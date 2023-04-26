@@ -28,6 +28,12 @@ public class UserInput
       }
       if (cmd[0] == "print")
       {
+        if(cmd.Length < 2)
+        {
+          Console.WriteLine("Invalid input");
+          Messages.ContinousPrompt();
+          continue;
+        }
         Messages.CurrentValue(cmd[1], Printer.GetValue(transactions, cmd[1]));
         Messages.ContinousPrompt();
         continue;
@@ -39,7 +45,7 @@ public class UserInput
         continue;
       }
       Messages.ContinousPrompt();
-      tr.GetTransaction(cmd, message, transactions);
+      tr.CreateTransaction(cmd, message, transactions);
       continue;
     }
   }

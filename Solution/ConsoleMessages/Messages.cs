@@ -7,10 +7,19 @@ public static class Messages
     Console.WriteLine();
     Console.Clear();
     Console.ForegroundColor = ConsoleColor.Blue;
-    Console.WriteLine("||**|| Welcome to the Transaction Calculator ||**||");
+    Console.WriteLine("\t---------------------------------------------------");
+    Console.Write("\t||**||");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Write(" Welcome to the Transaction Calculator ");
+    Console.ForegroundColor = ConsoleColor.Blue;
+    Console.WriteLine("||**||");
+    Console.WriteLine("\t---------------------------------------------------");
     Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine();
-    Console.Write("Enter your a file path if you wish to read your transactions from a file: \n");
+    Console.Write("Rerun program with a file path added if you wish to read your transactions from a file: \nExample: \n");
+    Console.ForegroundColor = ConsoleColor.Cyan;
+    Console.Write("'dotnet run C:\\Users\\User\\Desktop\\test.txt' \n");
+    Console.ForegroundColor = ConsoleColor.White;
   }
   public static void AppEnd()
   {

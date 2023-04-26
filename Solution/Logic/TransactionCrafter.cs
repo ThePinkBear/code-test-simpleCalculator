@@ -2,7 +2,7 @@ namespace TransactionCalculator;
 
 public class TransactionCrafter
 {
-  public void GetTransaction(string[] input, string errorMessage, List<Transaction> transactions)
+  public void CreateTransaction(string[] input, string errorMessage, List<Transaction> transactions)
   {
 
     Transaction result = new();
@@ -38,7 +38,7 @@ public class TransactionCrafter
         {
           Register = registerInput,
           Operation = operation,
-          Value = value
+          Value = new KeyValuePair<string, double>("", value)
         };
         transactions.Insert(0, result);
         break;
@@ -49,9 +49,10 @@ public class TransactionCrafter
         {
           Register = registerInput,
           Operation = operation,
-          Value = Printer.GetValue(transactions, valueInput)
+          Value = new KeyValuePair<string, double>(valueInput, 0)
         };
         transactions.Add(result);
+        
         break;
       }
     }
