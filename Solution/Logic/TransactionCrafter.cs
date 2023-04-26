@@ -2,7 +2,7 @@ namespace TransactionCalculator;
 
 public class TransactionCrafter
 {
-  public void GetTransaction(string[] input, string errorMessage, List<Transaction> transactions, Dictionary<string, double> registerValue)
+  public void GetTransaction(string[] input, string errorMessage, List<Transaction> transactions)
   {
 
     Transaction result = new();
@@ -34,11 +34,6 @@ public class TransactionCrafter
 
       if (double.TryParse(valueInput, out double value))
       {
-        if(!registerValue.ContainsKey(registerInput))
-        {
-          registerValue.Add(registerInput, 0.0);
-        }
-
         result = new()
         {
           Register = registerInput,
@@ -50,15 +45,11 @@ public class TransactionCrafter
       }
       else
       {
-        if(!registerValue.ContainsKey(valueInput))
-        {
-          registerValue.Add(valueInput, 0.0);
-        }
         result = new()
         {
-          Register = valueInput,
+          Register = registerInput,
           Operation = operation,
-          Value = registerValue.ContainsKey(valueInput) ? registerValue[valueInput] : 0.0
+          Value = Printer.GetValue(transactions, valueInput)
         };
         transactions.Add(result);
         break;

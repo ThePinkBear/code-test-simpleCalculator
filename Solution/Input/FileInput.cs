@@ -4,7 +4,6 @@ public class FileInput
 {
   public void FileInputLogic(StreamReader reader)
   {
-    Dictionary<string, double> registerValue = new();
     List<Transaction> transactions = new();
     TransactionCrafter tr = new();
     string[]? line;
@@ -14,7 +13,7 @@ public class FileInput
     {
       while ((line = reader.ReadLine()?.ToLower().Split(" ")) != null)
       {
-        tr.GetTransaction(line, message, transactions, registerValue);
+        tr.GetTransaction(line, message, transactions);
       }
     }
   }

@@ -5,9 +5,8 @@ public class UserInput
 
   public void UserInputLogic()
   {
-    Dictionary<string, double> registerValue = new();
-    List<Transaction> transactions = new();
     Messages.Prompt();
+    List<Transaction> transactions = new();
     TransactionCrafter tr = new();
     string[]? cmd;
     var message = "Available operations are: Add, Subtract & Multiply \nRetry please.";
@@ -29,10 +28,7 @@ public class UserInput
       }
       if (cmd[0] == "print")
       {
-        Calculator calc = new(registerValue, transactions);
-        calc.Caluclate();
-        var result = calc.GetValue(cmd[1]);
-        Messages.CurrentValue(cmd[1], result);
+        Messages.CurrentValue(cmd[1], Printer.GetValue(transactions, cmd[1]));
         Messages.ContinousPrompt();
         continue;
       }
@@ -43,7 +39,7 @@ public class UserInput
         continue;
       }
       Messages.ContinousPrompt();
-      tr.GetTransaction(cmd, message, transactions, registerValue);
+      tr.GetTransaction(cmd, message, transactions);
       continue;
     }
   }
