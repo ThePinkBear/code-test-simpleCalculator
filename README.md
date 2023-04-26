@@ -4,8 +4,8 @@
 To run on windows, make sure you have .Net sdk 7.0.200 installed.
 - clone the repo
 - cd into the folder
-- run these commands: "dotnet restore" and "dotnet build"
-- To launch the program: "dotnet run"
+- Run these commands: "dotnet restore" and "dotnet build"
+- To launch the program cd into the folder called "Solution" and run command: "dotnet run"
 - To test against a file: "dotnet run \<path to file\>"
 -------------------------------------------------------------------
 
