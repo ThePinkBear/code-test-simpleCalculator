@@ -5,6 +5,7 @@ public class FileInput
   public void FileInputLogic(StreamReader reader)
   {
     List<Transaction> transactions = new();
+    List<Transaction> relationTransactions = new();
     TransactionCrafter tr = new();
     string[]? line;
     var message = "File transaction not correctly formatted";
@@ -29,6 +30,10 @@ public class FileInput
       }
       if (line[0] == "print")
       {
+        foreach(var relationTransaction in relationTransactions)
+        {
+          transactions.Add(relationTransaction);
+        }
         if(line.Length < 2)
         {
           Console.WriteLine("Invalid input");
@@ -45,7 +50,7 @@ public class FileInput
         Messages.ContinousPrompt();
         continue;
       }
-        tr.CreateTransaction(line, message, transactions);
+        tr.CreateTransaction(line, message, transactions, relationTransactions);
       }
     }
   }

@@ -2,45 +2,37 @@ namespace TransactionCalculator;
 
 public class TransactionCrafter
 {
-  public void CreateTransaction(string[] input, string errorMessage, List<Transaction> transactions)
+  public void CreateTransaction(string[] input, string errorMessage, List<Transaction> transactions, List<Transaction> relationTransactions)
   {
-
     Transaction result = new();
     while(true)
     {
       string registerInput = input[0];
 
-      var operatorInput = input[1];
+      Operation operatorInput = input[1] switch
+      {
+        "add" 
+          => Operation.Add,
+        "subtract" 
+          => Operation.Subtract,
+        "multiply" 
+          => Operation.Multiply,
+        _ 
+          => throw new ArgumentException(errorMessage)
+      };
 
       var valueInput = input[2];
       
-      Operation operation;
-
-      switch (operatorInput)
-      {
-        case "add":
-          operation = Operation.Add;
-          break;
-        case "subtract":
-          operation = Operation.Subtract;
-          break;
-        case "multiply":
-          operation = Operation.Multiply;
-          break;
-        default:
-          Messages.OperatorErrorMessage(errorMessage);
-          continue;
-      };
 
       if (double.TryParse(valueInput, out double value))
       {
         result = new()
         {
           Register = registerInput,
-          Operation = operation,
+          Operation = operatorInput,
           Value = new KeyValuePair<string, double>("", value)
         };
-        transactions.Insert(0, result);
+        transactions.Add(result);
         break;
       }
       else
@@ -48,11 +40,11 @@ public class TransactionCrafter
         result = new()
         {
           Register = registerInput,
-          Operation = operation,
+          Operation = operatorInput,
           Value = new KeyValuePair<string, double>(valueInput, 0)
         };
-        transactions.Add(result);
         
+        relationTransactions.Add(result);
         break;
       }
     }

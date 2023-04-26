@@ -7,6 +7,8 @@ public class UserInput
   {
     Messages.Prompt();
     List<Transaction> transactions = new();
+    List<Transaction> relationTransactions = new();
+
     TransactionCrafter tr = new();
     string[]? cmd;
     var message = "Available operations are: Add, Subtract & Multiply \nRetry please.";
@@ -28,6 +30,10 @@ public class UserInput
       }
       if (cmd[0] == "print")
       {
+        foreach(var relationTransaction in relationTransactions)
+        {
+          transactions.Add(relationTransaction);
+        }
         if(cmd.Length < 2)
         {
           Console.WriteLine("Invalid input");
@@ -45,7 +51,7 @@ public class UserInput
         continue;
       }
       Messages.ContinousPrompt();
-      tr.CreateTransaction(cmd, message, transactions);
+      tr.CreateTransaction(cmd, message, transactions, relationTransactions);
       continue;
     }
   }
